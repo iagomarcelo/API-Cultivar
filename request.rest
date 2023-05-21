@@ -1,0 +1,107 @@
+# ###
+# POST http://localhost:3000/api/customer/
+# Content-Type: application/json
+
+# {
+# "customer_id" : "teste",
+# "customer_name": "teste",
+# "customer_cpf": "teste",
+# "customer_street_address": "teste",
+# "customer_cep": "teste",
+# "customer_neighbourhood": "teste",
+# "customer_city": "teste",
+# "customer_state": "teste",
+# "customer_phone_number": "teste",
+# "customer_email": "teste",
+# "customer_password": "teste",
+# }
+
+            const products = {
+                product_id: req.body.product_id,
+                product_name: req.body.product_name,
+                product_category: req.body.product_category,
+                product_price: req.body.product_price,
+                // farmer_id: req.body.farmer_id,
+                product_manufacturing_date: req.body.product_manufacturing_date,
+                product_expiration_date: req.body.product_expiration_date,
+                product_description: req.body.product_description,
+                product_status: req.body.product_status,
+
+            };
+
+            ({
+    product_id: {
+        type: Integer,
+        required: true
+    },
+    product_name:   {
+        type: String,
+        required: true,
+    },
+    product_category:   {
+        type: String,
+        required: true,
+    },
+    product_price: {
+        type: Number,
+        required: true,
+    },
+    farmer_id:  {
+        type:  String,
+        required: true,
+    },
+    product_manufacturing_date: {
+        type: Date,
+        required: true,
+    },
+    product_expiration_date: {
+        type: Date,
+        required: true,
+    },
+    product_description: {
+        type: String,
+        required: true,
+    },
+    product_status: {
+        type: Boolean,
+        required: true,
+    },
+    
+},
+
+{timestamps: true}
+
+);
+
+
+{
+    "product_id": "teste",
+    "product_name": "teste",
+    "product_category": "teste",
+    "product_price": "teste",
+    "product_manufacturing_date": "teste",
+    "product_expiration_date": "teste",
+    "product_description": "teste",
+    "product_status": "available"
+}
+
+
+GET http://localhost:3000/api/customers/
+
+
+
+
+
+{
+"farmer_id" : "teste",
+"farmer_name": "teste",
+"farmer_cpf": "teste",
+"farmer_street_address": "teste",
+"farmer_cep": "teste",
+"farmer_neighbourhood": "teste",
+"farmer_city": "teste",
+"farmer_state": "teste",
+"farmer_phone_number": "teste",
+"farmer_email": "teste",
+"farmer_password": "teste",
+}
