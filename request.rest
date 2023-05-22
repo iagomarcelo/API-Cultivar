@@ -105,3 +105,25 @@ GET http://localhost:3000/api/customers/
 "farmer_email": "teste",
 "farmer_password": "teste",
 }
+
+
+{
+    "sell_id" : "teste",
+    "selling_date": "2021-01-15T06:31:15.000Z",
+    "pickup_adress": "teste",
+    "price": "20",
+    "amount": "3",
+    "product_id": ["product_id"],
+    "farmer_id": ["farmer_id"],
+    "customer_id": ["customer_id"]
+}
+
+
+    sell_id: _id,
+    selling_date: req.body.selling_date,
+    pickup_adress: req.body.pickup_adress,
+    price: req.body.price,
+    amount: req.body.amount,
+    product_id: req.body.product_id,
+    farmer_id: req.body.farmer_id,
+    customer_id: req.body.customer_id,

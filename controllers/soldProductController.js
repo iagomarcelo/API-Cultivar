@@ -1,10 +1,4 @@
 const {SoldProduct: soldProductModel} = require("../models/SoldProduct");
-const {Customer: customerModel} = require("../models/Customer");
-const {Farmer: farmerModel} = require("../models/Farmer");
-const {Product: productModel} = require("../models/Product");
-
-
-
 
 const soldProductController = {
     
@@ -12,19 +6,21 @@ const soldProductController = {
         try{
 
 
-            const soldProduct = await soldProductModel.aggregate([
-                {
-                  $lookup: {
-                    from: 'farmers', // The name of the posts collection
-                    localField: 'farmer_id',
-                    foreignField: '_id',
-                    as: 'teste',
-                  },
-                },
-              ]);
-            
+            const soldProduct = {
+                sell_id: req.body.sell_id,
+                selling_date: req.body.selling_date,
+                pickup_adress: req.body.pickup_adress,
+                price: req.body.price,
+                amount: req.body.amount,
+                // product_id: req.body.product_id,
+                // farmer_id: req.body.farmer_id,
+                // customer_id: req.body.customer_id,
+            };
 
-            res.status(201).json({soldProduct, msg: "sold Product created succesfully!"});
+            
+            const response = await soldProductModel.create(soldProduct);
+
+            res.status(201).json({response, msg: "sold Product created succesfully!"});
 
         } catch (error) {
 
@@ -34,21 +30,9 @@ const soldProductController = {
 
     getAll: async(req, res) => {
         try{
-            const soldProduct = await soldProductModel.aggregate([
-                {
-                  $lookup: {
-                    from: "farmers", // The name of the posts collectionmodels/Farmer.js
-                    localField: "farmer_id",
-                    foreignField: "farmer_id",
-                    as: "farmer",
-                  },
-                },
-                {
-                    $unwind: '$farmer'
-                },
-              ]);
+            const soldProducts = await soldProductModel.find();
 
-            res.status(200).send({success: true, msg: "ok", data: soldProduct});
+            res.json(soldProducts);
         } catch (error){
             console.log(error);
         }
@@ -103,11 +87,11 @@ const soldProductController = {
         const updatedService = await soldProductModel.findByIdAndUpdate(id, soldProduct);
 
         if (!updatedService) {
-            res.status(404).json({msg: "S oldProduct not found."});
+            res.status(404).json({msg: "Sold Product not found."});
             return;
         };
 
-        res.status(200).json({soldProduct, msg: "sold Product updated succesfully."});
+        res.status(200).json({updatedService, msg: "sold Product updated succesfully."});
     },
 
 }
